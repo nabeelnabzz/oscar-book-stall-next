@@ -1,4 +1,11 @@
-export default function AboutPage() {
+import { client, urlFor } from '@/lib/sanity'
+
+async function getSettings() {
+  return await client.fetch(`*[_type == "siteSettings"][0]{aboutImage}`)
+}
+
+export default async function AboutPage() {
+  const settings = await getSettings()
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
@@ -23,9 +30,17 @@ export default function AboutPage() {
                      with quality products at affordable prices.
                  </p>
             </div>
-            <div className="bg-gray-100 rounded-2xl h-[400px] flex items-center justify-center">
-                <span className="text-gray-400 font-bold">Store Image Placeholder</span>
-            </div>
+             <div className="bg-gray-100 rounded-2xl h-[400px] flex items-center justify-center overflow-hidden">
+                {settings?.aboutImage ? (
+                    <img 
+                        src={urlFor(settings.aboutImage).width(800).height(600).url()} 
+                        alt="Our Store" 
+                        className="w-full h-full object-cover"
+                    />
+                ) : (
+                    <span className="text-gray-400 font-bold">Store Image Placeholder</span>
+                )}
+             </div>
          </div>
       </div>
 

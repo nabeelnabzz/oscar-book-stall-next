@@ -1,0 +1,57 @@
+import { nanoid } from 'nanoid';
+import fs from 'fs';
+
+const stories = [
+    {
+        _type: 'story',
+        _id: `story-${nanoid()}`,
+        title: 'Exam Preparation Made Easy',
+        author: 'Rahul Sharma',
+        role: 'Class 12 Student',
+        content: 'The range of reference books and quality stationery at Oscar Edu Hyper Mart really helped me stay organized during my board exams. Highly recommended!',
+        image_url: 'https://images.unsplash.com/photo-1523240715632-611639cd490d?q=80&w=800&auto=format&fit=crop'
+    },
+    {
+        _type: 'story',
+        _id: `story-${nanoid()}`,
+        title: 'My Creative Sanctuary',
+        author: 'Ananya Iyer',
+        role: 'Professional Artist',
+        content: 'Finding high-quality canvases and professional-grade paints in one place was a game-changer for my studio. The variety here is unmatched.',
+        image_url: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=800&auto=format&fit=crop'
+    },
+    {
+        _type: 'story',
+        _id: `story-${nanoid()}`,
+        title: 'Perfect Office Supplies',
+        author: 'Vikram Mehta',
+        role: 'Architect',
+        content: 'As an architect, I need precise drawing tools. Oscar Edu Hyper Mart provides the exact technical pens and drafting paper I need for my projects.',
+        image_url: 'https://images.unsplash.com/photo-1503387762-592dea58ef23?q=80&w=800&auto=format&fit=crop'
+    },
+    {
+        _type: 'story',
+        _id: `story-${nanoid()}`,
+        title: 'Journaling Joy',
+        author: 'Priya Das',
+        role: 'Journalist',
+        content: 'I love their collection of leather-bound journals. They make my daily journaling experience so much more premium and inspiring.',
+        image_url: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop'
+    },
+    {
+        _type: 'story',
+        _id: `story-${nanoid()}`,
+        title: 'Best for Kids',
+        author: 'Sanjay Kapoor',
+        role: 'Parent',
+        content: 'My kids love the colorful school bags and educational kits. It makes them excited about going to school and learning new things.',
+        image_url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop'
+    }
+];
+
+// Convert to NDJSON
+const ndjson = stories.map(story => JSON.stringify(story)).join('\n');
+
+// Write to file
+fs.writeFileSync('stories_import.ndjson', ndjson);
+console.log('Successfully generated stories_import.ndjson');

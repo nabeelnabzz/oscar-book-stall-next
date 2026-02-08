@@ -1,0 +1,47 @@
+import { nanoid } from 'nanoid';
+import fs from 'fs';
+
+const offers = [
+    {
+        _type: 'offer',
+        _id: `offer-1`,
+        title: 'Back to School Sale',
+        description: 'Get up to 20% off on all school supplies and educational kits.',
+        discountCode: 'SCHOOL20',
+        isActive: true,
+        image_url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop'
+    },
+    {
+        _type: 'offer',
+        _id: `offer-2`,
+        title: 'Artist Portfolio Special',
+        description: 'Flat 15% discount on professional canvases and oil paints.',
+        discountCode: 'ARTIST15',
+        isActive: true,
+        image_url: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=1200&auto=format&fit=crop'
+    },
+    {
+        _type: 'offer',
+        _id: `offer-3`,
+        title: 'Office Upgrade Deal',
+        description: 'Buy 2 get 1 free on all leather journals and premium pens.',
+        discountCode: 'OFFICEB2G1',
+        isActive: true,
+        image_url: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1200&auto=format&fit=crop'
+    }
+];
+
+// Map image_url to image placeholder (frontend handles fallback)
+const ndjson = offers.map(offer => {
+    const { image_url, ...rest } = offer;
+    return JSON.stringify({
+        ...rest,
+        // We add image_url as a custom field if we want to use it directly, 
+        // but our schema doesn't have it. 
+        // I'll update the schema or just use it as a 'hidden' field for now
+        image_url: image_url 
+    });
+}).join('\n');
+
+fs.writeFileSync('offers_import.ndjson', ndjson);
+console.log('Successfully generated offers_import.ndjson');

@@ -36,6 +36,17 @@ export default {
             title: 'Is Active?',
             type: 'boolean',
             initialValue: true
+        },
+        {
+            name: 'image_url',
+            title: 'Image URL (Fallback)',
+            type: 'url'
         }
-    ]
+    ],
+    preview: {
+      select: {
+        title: 'title',
+        media: 'image'
+      }
+    }
 }

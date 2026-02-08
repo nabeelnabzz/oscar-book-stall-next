@@ -22,6 +22,13 @@ export default {
       },
     },
     {
+        name: 'productImage',
+        title: 'Floating Product Image (Optional)',
+        type: 'image',
+        description: 'An image of a product that floats on top of the banner.',
+        options: { hotspot: true }
+    },
+    {
         name: 'layout',
         title: 'Content Layout',
         type: 'string',
@@ -66,4 +73,10 @@ export default {
         initialValue: 'Shop Collection'
     }
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image'
+    }
+  }
 }

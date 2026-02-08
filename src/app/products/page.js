@@ -22,8 +22,12 @@ async function getCategories() {
     return await client.fetch(`*[_type == "category"]`)
 }
 
+async function getSettings() {
+    return await client.fetch(`*[_type == "siteSettings"][0]{contactNumber}`)
+}
+
 export default async function ProductsPage() {
-  const [products, categories] = await Promise.all([getProducts(), getCategories()])
+  const [products, categories, settings] = await Promise.all([getProducts(), getCategories(), getSettings()])
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -60,7 +64,7 @@ export default async function ProductsPage() {
             
             {/* Product Grid */}
             <div className="flex-1">
-                <ProductGrid products={products} title="" />
+                <ProductGrid products={products} title="" settings={settings} />
             </div>
         </div>
       </div>

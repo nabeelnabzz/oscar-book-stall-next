@@ -83,6 +83,22 @@ export default function HeroSlider({ banners = [] }) {
                            </motion.div>
                        )}
                    </div>
+
+                   {/* Floating Product Image */}
+                   {banner.productImage && (
+                       <motion.div 
+                          initial={{ opacity: 0, x: 50, rotate: 10 }}
+                          whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+                          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+                          className={`hidden lg:block absolute ${banner.layout === 'right' ? 'left-24' : 'right-24'} top-1/2 -translate-y-1/2 w-1/3 aspect-square`}
+                       >
+                           <img 
+                               src={urlFor(banner.productImage).width(800).url()} 
+                               alt="Featured Product" 
+                               className="w-full h-full object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
+                           />
+                       </motion.div>
+                   )}
                </div>
             </div>
           )

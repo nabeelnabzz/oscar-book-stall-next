@@ -4,11 +4,12 @@ import ProductGrid from '@/components/ProductGrid'
 export const revalidate = 60
 
 async function getNewArrivals() {
-  return await client.fetch(`*[_type == "product" && isNew == true]{
+  return await client.fetch(`*[_type == "product" && (isNew == true || "New" in badges)]{
       _id,
       title,
       slug,
       price,
+      discountedPrice,
       images,
       badges,
       isNew,
@@ -16,8 +17,15 @@ async function getNewArrivals() {
   }`)
 }
 
+async function getSettings() {
+    return await client.fetch(`*[_type == "siteSettings"][0]{contactNumber}`)
+}
+
 export default async function NewArrivalsPage() {
-  const products = await getNewArrivals()
+  const [products, settings] = await Promise.all([
+    getNewArrivals(),
+    getSettings()
+  ])
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -28,7 +36,7 @@ export default async function NewArrivalsPage() {
         </div>
         
         {products.length > 0 ? (
-            <ProductGrid products={products} title="" />
+            <ProductGrid products={products} title="" settings={settings} />
         ) : (
             <div className="text-center py-20 bg-white rounded-lg shadow-sm">
                 <p className="text-gray-500 text-lg">New collections are arriving soon. Stay tuned!</p>

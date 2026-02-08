@@ -26,10 +26,17 @@ async function getProductsByCategory(slug) {
   }`, { slug })
 }
 
+async function getSettings() {
+    return await client.fetch(`*[_type == "siteSettings"][0]{contactNumber}`)
+}
+
 export default async function CategoryPage({ params }) {
   const { slug } = await params
-  const category = await getCategory(slug)
-  const products = await getProductsByCategory(slug)
+  const [category, products, settings] = await Promise.all([
+    getCategory(slug),
+    getProductsByCategory(slug),
+    getSettings()
+  ])
 
   if (!category) {
       return (
@@ -53,7 +60,7 @@ export default async function CategoryPage({ params }) {
         <p className="text-gray-500 mb-8">Browse our collection of {category.title}</p>
         
         {products.length > 0 ? (
-            <ProductGrid products={products} title="" />
+            <ProductGrid products={products} title="" settings={settings} />
         ) : (
             <div className="text-center py-20 bg-white rounded-lg shadow-sm">
                 <p className="text-gray-500 text-lg">No products found in this category.</p>

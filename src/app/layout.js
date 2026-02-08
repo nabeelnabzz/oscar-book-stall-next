@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={outfit.variable}>
       <body>
         <Header />
-        <main className="flex-grow pt-16">
+        <main className="flex-grow pt-[80px] md:pt-[96px]">
             {children}
         </main>
         <Footer />

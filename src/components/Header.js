@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <div className="w-full font-sans shadow-md fixed top-0 z-50 bg-white">
       {/* Top Bar */}
-      <div className="bg-[#0f4c81] text-white text-[10px] md:text-xs py-2">
+      <div className="bg-[#0f4c81] text-white text-[10px] md:text-xs py-1">
         <div className="container flex justify-between items-center px-4">
           <p className="hidden md:block">Oscar Edu Hyper Mart - Everything for Learning</p>
           <p className="md:hidden">Oscar Edu Hyper Mart</p>
@@ -23,16 +23,16 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <header className="py-2 bg-white relative z-50">
+      <header className="py-1 bg-white relative z-50">
         <div className="container flex items-center justify-between gap-4 px-4">
           {/* Logo */}
           <Link href="/" className="block">
              <Image 
                 src="/logo-new.jpg" 
                 alt="Oscar Edu Hyper Mart" 
-                width={200} 
-                height={80} 
-                className="h-16 w-auto md:h-20 object-contain"
+                width={180} 
+                height={60} 
+                className="h-12 w-auto md:h-16 object-contain"
                 priority
              />
           </Link>

@@ -23,4 +23,10 @@ export const category = {
       type: 'image',
     },
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image'
+    }
+  }
 }

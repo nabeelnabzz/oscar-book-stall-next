@@ -83,4 +83,10 @@ export default {
         initialValue: 'in_stock'
     }
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'images.0'
+    }
+  }
 }
